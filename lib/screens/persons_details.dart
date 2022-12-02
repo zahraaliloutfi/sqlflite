@@ -23,10 +23,10 @@ class _PersonDetailsState extends State<PersonDetails> {
     ageController.text = widget.person.age.toString();
 
     return Scaffold(
-      backgroundColor: Colors.cyanAccent,
+      backgroundColor: Colors.deepOrangeAccent,
       appBar: AppBar(
         title: Text(widget.person.name),
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.deepOrangeAccent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -73,7 +73,7 @@ class _PersonDetailsState extends State<PersonDetails> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             minimumSize: const Size(double.infinity, 50),
-                            backgroundColor: Colors.green,
+                            backgroundColor: Colors.deepOrangeAccent,
                             textStyle: const TextStyle(color: Colors.white),
                             padding: const EdgeInsets.all(8.0)),
                         child: const Text(
@@ -102,7 +102,12 @@ class _PersonDetailsState extends State<PersonDetails> {
                           'Delete',
                           textScaleFactor: 1.5,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          //widget.person ==انا كده بعتله البرسون ال المفروض يتمسح
+
+                          _deleteData(widget.person);
+
+                        },
                       ),
                     ),
                   ],
@@ -115,13 +120,23 @@ class _PersonDetailsState extends State<PersonDetails> {
     );
   }
 
-  _saveData(Person person) {
+  _saveData(Person person) async {
     //==0 => new data person ,>0 => update data person
     if (person.id == 0) {
-      helper.insertNewPerson(person);
+    await  helper.insertNewPerson(person);
+    }else{
+    await  helper.updatePerson(person);
     }
     moveToLastScreen();
   }
+
+  _deleteData(Person person) async {
+    if (person.id > 0) {
+      await  helper.deletePerson(person);
+    }
+    moveToLastScreen();
+  }
+
 
   void moveToLastScreen() {
     Navigator.pop(context, true);

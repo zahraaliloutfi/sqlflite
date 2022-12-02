@@ -67,6 +67,7 @@ class LiteDb {
     int count = await db!.rawUpdate(sqlTxt);
     //('UPDATE Test SET name = ?, value = ? WHERE name = ?',
     //   ['updated name', '9876', 'some name'])
+    print('update');
     return count; //لو رجعلك ب 0 يبقي محصلش تحديث لو رجع ب 1 علي الاقل يبقي حصل تحديث
     // print('updated: $count');
   }
@@ -77,6 +78,7 @@ class LiteDb {
         await getInstance; //لو فيه انستانس هيرجعلي انستانس لو لا هيعمل كرييت انستانس
     // Delete some record
     int count = await db!.rawDelete(sqlTxt);
+    print('delete');
     return count;
   }
 }

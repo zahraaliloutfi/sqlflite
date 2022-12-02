@@ -58,7 +58,7 @@ class _PersonsListState extends State<PersonsList> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: Colors.deepPurple,
+          color: Colors.deepOrangeAccent,
           elevation: 4.0,
           child: ListTile(
             leading: CircleAvatar(
